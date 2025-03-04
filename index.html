@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Chatbot</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #001f3f;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        #app {
+            width: 300px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            position: relative;
+            color: black;
+        }
+        .chat-box {
+            height: 250px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background: #e6f7ff;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user {
+            text-align: right;
+            color: #007bff;
+        }
+        .bot {
+            text-align: left;
+            color: #28a745;
+        }
+        .toggle-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <button class="toggle-btn" id="toggle-btn">Chat with us</button>
+        <div id="app">
+            <h2 style="text-align: center; color: #007bff;">Health Chatbot</h2>
+            <div class="chat-box">
+                <div v-for="message in messages" :class="['message', message.sender]" :key="message.id">
+                    {{ message.text }}
+                </div>
+            </div>
+            <input v-model="userInput" @keyup.enter="sendMessage" placeholder="Ask about health issues..." />
+            <button @click="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
